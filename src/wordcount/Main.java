@@ -12,20 +12,54 @@ public class Main
 
 		System.out.println("*** Array ***");
 		System.out.println();
-		System.out.println("For loop: " + wordArr.length);
-		System.out.println();
 		for(int i = 0; i < wordArr.length; i++)
 		{
 			System.out.println(wordArr[i]);
 		}
 
-		// HashMap<String, Integer> words = new HashMap<>();
-		// ArrayList<HashMap.Entry<String, Integer>> sortedArray = new ArrayList<>();
+		System.out.println();
+		System.out.println("*** HashMap ***");
+		System.out.println();
 
-		// for(String w : wordArr)
-		// {
-		// 	System.out.println(HashMap.get(words));
-		// }
-		
+		HashMap<String, Integer> words = new HashMap<>();
+		ArrayList<HashMap.Entry<String, Integer>> sortedArray = new ArrayList<>();
+
+		for(String i : wordArr)
+		{
+			String w = i.toLowerCase();
+			// System.out.println(w);
+			
+			
+			
+			if(words.containsKey(w))
+			{
+				int wordCount = words.get(w);
+				words.put(w, ++wordCount);
+			}
+			else
+			{
+				words.put(w, 1);
+			}
+		}
+		System.out.println(words);
+		System.out.println();
+		System.out.println("*** Sorted Array ***");
+		System.out.println();
+
+		sortedArray.addAll(words.entrySet());
+		Collections.sort(sortedArray, new Comparator<HashMap.Entry<String, Integer>>()
+		{
+			@Override
+			public int compare(Map.Entry<String, Integer> w1, Map.Entry<String, Integer> w2)
+			{
+				return w2.getValue() - w1.getValue();
+			}
+		});
+
+		for(int i = 0; i < 50; i++)
+		{
+			System.out.println(sortedArray.get(i).getKey() + " " + "is present" + " " + sortedArray.get(i).getValue() + " " + "times. \n");
+		}
+
 	}
 }
